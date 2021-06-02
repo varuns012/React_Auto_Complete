@@ -1,0 +1,21 @@
+
+.search_container {
+      padding: 50px;
+}
+
+.auto_filled {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+
+.ant-card.ant-card-bordered.name_card {
+    height: 60vh;
+    background-color: aliceblue;
+    overflow: auto;
+}
+
+.ant-card-body {
+    height: 60vh;
+}
