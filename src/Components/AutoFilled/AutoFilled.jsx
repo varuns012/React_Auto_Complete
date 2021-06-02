@@ -6,28 +6,28 @@ import axios from "axios";
 const { Title } = Typography;
 
 function AutoFilled() {
-  const [searchFood, setSearchFood] = useState([]);
-  const [searchValue, setSearchValue] = useState([]);
+  const [searchCountry, setSearchCountry] = useState([]);
+  const [matchCountry, setMatchCountry] = useState([]);
   const [optionsSelected, setOptionsSelected] = useState("");
 
 
   const searchHandle = (text) => {
     setOptionsSelected(text)
     if(!text) {
-      setSearchValue([])
+      setMatchCountry([])
     } else {
-      let textMatches = searchFood.filter((food) => {
+      let textMatches = searchCountry.filter((food) => {
         const regex = new RegExp(`${text}`);
         return food.name.match(regex) || food.capital.match(regex);
       });
-    setSearchValue(textMatches);
+    setMatchCountry(textMatches);
   }
   };
 
   useEffect(() => {
     const loadCountries = async () => {
       const resp = await axios.get("https://restcountries.eu/rest/v2/all");
-      setSearchFood(resp.data);
+      setSearchCountry(resp.data);
     };
     loadCountries();
   }, []);
@@ -47,8 +47,8 @@ function AutoFilled() {
         value={optionsSelected}
       />
       <Card className="name_card">
-      {searchValue &&
-        searchValue.map((item, index) => {
+      {matchCountry &&
+        matchCountry.map((item, index) => {
           return (
             <div
             className="name_cont"
@@ -59,7 +59,7 @@ function AutoFilled() {
                 className="contact"
                 onClick={() => {
                   setOptionsSelected(item && item.name);
-                  setSearchValue([]);
+                  setMatchCountry([]);
                 }}
               >
                 Capital: {item.name}
