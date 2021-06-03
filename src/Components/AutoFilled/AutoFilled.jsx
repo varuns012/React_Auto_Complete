@@ -14,7 +14,7 @@ function AutoFilled() {
   const searchHandle = (text) => {
     setOptionsSelected(text)
     if(!text) {
-      setMatchCountry([])
+      setMatchCountry(searchCountry)
     } else {
       let textMatches = searchCountry.filter((food) => {
         const regex = new RegExp(`${text}`);
